@@ -137,37 +137,8 @@ class strategy():
             driverback(self.driver)
 
 
-    def screenshot(self):
-        self.reloadnum,people = reloading(self.driver,self.reloadnum,self.attempts,'col-xs-12')
-        if len(people[self.counter:]) == 0:
-            self.framework
-        for person in people[self.counter:]:
-            self.counter += 1
-            # scrolllowest(self.driver)
-            if not elemattempt(self.driver,person):
-                self.attempts = 1
-                break
-            self.attempts = 0
-            path = personpath(soup,self.counter)
-            try:
-                os.mkdir(path)
-                photos = self.driver.find_elements_by_class_name("col-xs-5")
-                photonum = 0
-                for photo in photos:
-                    click(photo)
-                    photonum += 1
-                    shottrimming(self.driver,photonum,path)
-                photoremove(path)
-                
-            except:
-                pass
-            driverback(self.driver)
-            self.driver.maximize_window()
-            print("counter=%s" % self.counter)
-
-
     def scraping(self):
-        executefunction = ["randomsearch実行中","wordsfavo実行中","favodelete実行中","screenshot実行中"]
+        executefunction = ["randomsearch実行中","wordsfavo実行中","favodelete実行中"]
         print(executefunction[self.execute])
         print("pattern=%s" % self.pattern)
         
@@ -189,8 +160,6 @@ class strategy():
                     self.wordsfavo()
                 if self.execute == 2:
                     self.favodelete()
-                if self.execute == 3:
-                    self.screenshot()
             
             except:
                 exception(self.driver)
